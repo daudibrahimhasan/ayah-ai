@@ -1,0 +1,133 @@
+:root {
+  /* Exact Shazam Color Palette Refined to Mint */
+  --mint-primary: #10b981;
+  --mint-bg-start: #10b981;
+  --mint-bg-end: #059669;
+  --glass-white: rgba(255, 255, 255, 0.25);
+  --halo-glow: 0 0 60px rgba(255, 255, 255, 0.2);
+  
+  --background: linear-gradient(180deg, var(--mint-bg-start) 0%, var(--mint-bg-end) 100%);
+  --font-main: "EB Garamond", "Amiri", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: inherit;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--background);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  letter-spacing: 0.02em;
+  font-size: 16px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-shazam {
+  animation: float 4s ease-in-out infinite;
+}
+
+.shazam-btn-halo {
+  width: 290px;
+  height: 290px;
+  background: var(--glass-white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--halo-glow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.shazam-btn-inner {
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+.shazam-page-wrapper {
+  display: flex;
+  width: 300%; /* 3 Screens: Library, Home, Quran */
+  height: 100vh;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.model-loading-overlay {
+  z-index: 200 !important;
+}
+
+.tap-text {
+  font-size: 1.95rem;
+  font-weight: 600;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.02em;
+}
+
+.dot {
+  width: 5.5px;
+  height: 5.5px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+.bottom-search-btn {
+  width: 60px;
+  height: 60px;
+  background: var(--glass-white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Listening Mode Animation */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 40px rgba(255, 255, 255, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.listening-pulse {
+  animation: pulse 1.5s infinite;
+}

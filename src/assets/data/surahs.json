@@ -1,0 +1,686 @@
+[
+  {
+    "number": 1,
+    "name": "The Opening",
+    "arabic": ".  اﻟﻔﺎﺗﺤﺔ",
+    "page": 8
+  },
+  {
+    "number": 2,
+    "name": "The Heifer",
+    "arabic": ".  اﻟﺒﻘﺮة",
+    "page": 8
+  },
+  {
+    "number": 3,
+    "name": "Family of Imran",
+    "arabic": "ﻋﻤﺮان آل",
+    "page": 54
+  },
+  {
+    "number": 4,
+    "name": "Women",
+    "arabic": "اﻟﻨﺴﺎء",
+    "page": 81
+  },
+  {
+    "number": 5,
+    "name": "The Table",
+    "arabic": "اﻟﻤﺎﺋﺪة",
+    "page": 109
+  },
+  {
+    "number": 6,
+    "name": "Livestock",
+    "arabic": ".   اﻷﻧﻌﺎم",
+    "page": 130
+  },
+  {
+    "number": 7,
+    "name": "The Elevations",
+    "arabic": ".  اﻷﻋﺮاف",
+    "page": 154
+  },
+  {
+    "number": 8,
+    "name": "The Spoils",
+    "arabic": ".  اﻷﻧﻔﺎل",
+    "page": 181
+  },
+  {
+    "number": 9,
+    "name": "Repentance",
+    "arabic": "اﻟﺘﻮﺑﺔ",
+    "page": 191
+  },
+  {
+    "number": 10,
+    "name": "Jonah",
+    "arabic": ".   ﻳﻮﻧﺲ",
+    "page": 211
+  },
+  {
+    "number": 11,
+    "name": "Hud",
+    "arabic": "ﻫﻮد",
+    "page": 225
+  },
+  {
+    "number": 12,
+    "name": "Joseph",
+    "arabic": ".  ﻳﻮﺳﻒ",
+    "page": 240
+  },
+  {
+    "number": 13,
+    "name": "Thunder",
+    "arabic": ".   اﻟﺮﻋﺪ",
+    "page": 254
+  },
+  {
+    "number": 14,
+    "name": "Abraham",
+    "arabic": ".   إﺑﺮاﻫﻴﻢ",
+    "page": 260
+  },
+  {
+    "number": 15,
+    "name": "The Rock",
+    "arabic": ".  اﻟﺤﺠﺮ",
+    "page": 267
+  },
+  {
+    "number": 16,
+    "name": "The Bee",
+    "arabic": "اﻟﻨﺤﻞ",
+    "page": 274
+  },
+  {
+    "number": 17,
+    "name": "The Night Journey",
+    "arabic": "اﻹﺳﺮاء",
+    "page": 289
+  },
+  {
+    "number": 18,
+    "name": "The Cave",
+    "arabic": "اﻟﻜﻬﻒ",
+    "page": 302
+  },
+  {
+    "number": 19,
+    "name": "Mary",
+    "arabic": "ﻣﺮﻳﻢ",
+    "page": 315
+  },
+  {
+    "number": 20,
+    "name": "Ta-Ha",
+    "arabic": ".  ﻃﻪ",
+    "page": 323
+  },
+  {
+    "number": 21,
+    "name": "The Prophets",
+    "arabic": "اﻷﻧﺒﻴﺎء",
+    "page": 335
+  },
+  {
+    "number": 22,
+    "name": "The Pilgrimage",
+    "arabic": "اﻟﺤﺞ",
+    "page": 346
+  },
+  {
+    "number": 23,
+    "name": "The Believers",
+    "arabic": "اﻟﻤﺆﻣﻨﻮن",
+    "page": 356
+  },
+  {
+    "number": 24,
+    "name": "The Light",
+    "arabic": "اﻟﻨﻮر",
+    "page": 365
+  },
+  {
+    "number": 25,
+    "name": "The Criterion",
+    "arabic": ".  اﻟﻔﺮﻗﺎن",
+    "page": 375
+  },
+  {
+    "number": 26,
+    "name": "The Poets",
+    "arabic": "اﻟﺸﻌﺮاء",
+    "page": 383
+  },
+  {
+    "number": 27,
+    "name": "The Ant",
+    "arabic": "اﻟﻨﻤﻞ",
+    "page": 396
+  },
+  {
+    "number": 28,
+    "name": "History",
+    "arabic": ".   اﻟﻘﺼﺺ",
+    "page": 406
+  },
+  {
+    "number": 29,
+    "name": "The Spider",
+    "arabic": ".  اﻟﻌﻨﻜﺒﻮت",
+    "page": 417
+  },
+  {
+    "number": 30,
+    "name": "The Romans",
+    "arabic": "اﻟﺮوم",
+    "page": 425
+  },
+  {
+    "number": 31,
+    "name": "Luqman",
+    "arabic": ".   ﻟﻘﻤﺎن",
+    "page": 432
+  },
+  {
+    "number": 32,
+    "name": "Prostration",
+    "arabic": ".  اﻟﺴﺠﺪة",
+    "page": 436
+  },
+  {
+    "number": 33,
+    "name": "The Confederates",
+    "arabic": "اﻷﺣﺰاب",
+    "page": 439
+  },
+  {
+    "number": 34,
+    "name": "Sheba",
+    "arabic": ".   ﺳﺒﺈ",
+    "page": 450
+  },
+  {
+    "number": 35,
+    "name": "Originator",
+    "arabic": ".   ﻓﺎﻃﺮ",
+    "page": 457
+  },
+  {
+    "number": 36,
+    "name": "Ya-Seen",
+    "arabic": "ﻳﺲ",
+    "page": 463
+  },
+  {
+    "number": 37,
+    "name": "The Aligners",
+    "arabic": ".  اﻟﺼﺎﻓﺎت",
+    "page": 470
+  },
+  {
+    "number": 38,
+    "name": "Saad",
+    "arabic": ".  ص",
+    "page": 480
+  },
+  {
+    "number": 39,
+    "name": "Throngs",
+    "arabic": ".   اﻟﺰﻣﺮ",
+    "page": 487
+  },
+  {
+    "number": 40,
+    "name": "Forgiver",
+    "arabic": "ﻏﺎﻓﺮ",
+    "page": 496
+  },
+  {
+    "number": 41,
+    "name": "Detailed",
+    "arabic": ".   ﻓﺼﻠﺖ",
+    "page": 506
+  },
+  {
+    "number": 42,
+    "name": "Consultation",
+    "arabic": ".  اﻟﺸﻮرى",
+    "page": 513
+  },
+  {
+    "number": 43,
+    "name": "Decorations",
+    "arabic": ".   اﻟﺰﺧﺮف",
+    "page": 520
+  },
+  {
+    "number": 44,
+    "name": "Smoke",
+    "arabic": "اﻟﺪﺧﺎن",
+    "page": 527
+  },
+  {
+    "number": 45,
+    "name": "Kneeling",
+    "arabic": ".  اﻟﺠﺎﺛﻴﺔ",
+    "page": 531
+  },
+  {
+    "number": 46,
+    "name": "The Dunes",
+    "arabic": "اﻷﺣﻘﺎف",
+    "page": 535
+  },
+  {
+    "number": 47,
+    "name": "Muhammad",
+    "arabic": "ﻣﺤﻤـﺪ",
+    "page": 541
+  },
+  {
+    "number": 48,
+    "name": "Victory",
+    "arabic": ".   اﻟﻔﺘﺢ",
+    "page": 545
+  },
+  {
+    "number": 49,
+    "name": "The Chambers",
+    "arabic": "اﻟﺤـﺠـﺮات",
+    "page": 550
+  },
+  {
+    "number": 50,
+    "name": "Qaf",
+    "arabic": ".   ق",
+    "page": 552
+  },
+  {
+    "number": 51,
+    "name": "The Spreaders",
+    "arabic": "اﻟﺬارﻳﺎت",
+    "page": 556
+  },
+  {
+    "number": 52,
+    "name": "The Mount",
+    "arabic": "اﻟـﻄﻮر",
+    "page": 560
+  },
+  {
+    "number": 53,
+    "name": "The Star",
+    "arabic": ".   ـﻢﺠاﻟـﻨ",
+    "page": 563
+  },
+  {
+    "number": 54,
+    "name": "The Moon",
+    "arabic": "اﻟـﻘﻤـﺮ",
+    "page": 567
+  },
+  {
+    "number": 55,
+    "name": "The Compassionate",
+    "arabic": "اﻟـﺮﺣـﻤـﻦ",
+    "page": 571
+  },
+  {
+    "number": 56,
+    "name": "The Inevitable",
+    "arabic": ".  اﻟﻮاﻗﻌـﺔ",
+    "page": 575
+  },
+  {
+    "number": 57,
+    "name": "Iron",
+    "arabic": ".  اﻟﺤـﺪﻳﺪ",
+    "page": 580
+  },
+  {
+    "number": 58,
+    "name": "The Argument",
+    "arabic": "اﻟـﻤﺠﺎدﻟﺔ",
+    "page": 585
+  },
+  {
+    "number": 59,
+    "name": "The Mobilization",
+    "arabic": ".   اﻟـﺤـﺸـﺮ",
+    "page": 588
+  },
+  {
+    "number": 60,
+    "name": "The Woman Tested",
+    "arabic": "اﻟـﻤـﻤـﺘـﺤﻨﺔ",
+    "page": 592
+  },
+  {
+    "number": 61,
+    "name": "Column",
+    "arabic": "اﻟـﺼـﻒ",
+    "page": 595
+  },
+  {
+    "number": 62,
+    "name": "Friday",
+    "arabic": "اﻟـﺠـﻤﻌﺔ",
+    "page": 597
+  },
+  {
+    "number": 63,
+    "name": "The Hypocrites",
+    "arabic": ".  اﻟـﻤﻨﺎﻓﻘﻮن",
+    "page": 598
+  },
+  {
+    "number": 64,
+    "name": "Gathering",
+    "arabic": "اﻟـﺘﻐﺎﺑﻦ",
+    "page": 600
+  },
+  {
+    "number": 65,
+    "name": "Divorce",
+    "arabic": ".  اﻟـﻄﻼق",
+    "page": 602
+  },
+  {
+    "number": 66,
+    "name": "Prohibition",
+    "arabic": "اﻟـﺘﺤﺮﻳﻢ",
+    "page": 604
+  },
+  {
+    "number": 67,
+    "name": "Sovereignty",
+    "arabic": "اﻟـﻤﻠﻚ",
+    "page": 607
+  },
+  {
+    "number": 68,
+    "name": "The Pen",
+    "arabic": "اﻟـﻘـﻠـﻢ",
+    "page": 610
+  },
+  {
+    "number": 69,
+    "name": "The Reality",
+    "arabic": ".   اﻟـﺤﺎﻗـﺔ",
+    "page": 613
+  },
+  {
+    "number": 70,
+    "name": "Ways of Ascent",
+    "arabic": ".   اﻟـﻤﻌﺎرج",
+    "page": 616
+  },
+  {
+    "number": 71,
+    "name": "Noah",
+    "arabic": "ﻧﻮح",
+    "page": 618
+  },
+  {
+    "number": 72,
+    "name": "The Jinn",
+    "arabic": ".  اﻟﺠﻦ",
+    "page": 621
+  },
+  {
+    "number": 73,
+    "name": "The Enwrapped",
+    "arabic": ".  اﻟـﻤـﺰﻣـﻞ",
+    "page": 623
+  },
+  {
+    "number": 74,
+    "name": "The Enrobed",
+    "arabic": "اﻟـﻤـﺪﺛـﺮ",
+    "page": 625
+  },
+  {
+    "number": 75,
+    "name": "Resurrection",
+    "arabic": "اﻟـﻘـﻴﺎﻣـﺔ",
+    "page": 628
+  },
+  {
+    "number": 76,
+    "name": "Man",
+    "arabic": "اﻹﻧﺴﺎن",
+    "page": 630
+  },
+  {
+    "number": 77,
+    "name": "The Unleashed",
+    "arabic": ".  اﻟـﻤﺮﺳﻼت",
+    "page": 633
+  },
+  {
+    "number": 78,
+    "name": "The Event",
+    "arabic": "اﻟـﻨﺒﺈ",
+    "page": 635
+  },
+  {
+    "number": 79,
+    "name": "The Snatchers",
+    "arabic": "اﻟـﻨﺎزﻋﺎت",
+    "page": 637
+  },
+  {
+    "number": 80,
+    "name": "He Frowned",
+    "arabic": ".  ﻋﺒﺲ",
+    "page": 640
+  },
+  {
+    "number": 81,
+    "name": "The Rolling",
+    "arabic": ".   اﻟﺘﻜﻮﻳﺮ",
+    "page": 642
+  },
+  {
+    "number": 82,
+    "name": "The Shattering",
+    "arabic": ".   اﻻﻧﻔﻄﺎر",
+    "page": 643
+  },
+  {
+    "number": 83,
+    "name": "The Defrauders",
+    "arabic": "اﻟﻤﻄـﻔـﻔﻴﻦ",
+    "page": 644
+  },
+  {
+    "number": 84,
+    "name": "The Rupture",
+    "arabic": ".  اﻻﻧﺸﻘﺎق",
+    "page": 646
+  },
+  {
+    "number": 85,
+    "name": "The Constellations",
+    "arabic": ".  اﻟﺒﺮوج",
+    "page": 648
+  },
+  {
+    "number": 86,
+    "name": "The Nightly Visitor",
+    "arabic": "اﻟـﻄﺎرق",
+    "page": 649
+  },
+  {
+    "number": 87,
+    "name": "The Most High",
+    "arabic": ".   اﻷﻋـﻠﻰ",
+    "page": 650
+  },
+  {
+    "number": 88,
+    "name": "The Overwhelming",
+    "arabic": "اﻟﻐﺎﺷﻴـﺔ",
+    "page": 651
+  },
+  {
+    "number": 89,
+    "name": "The Dawn",
+    "arabic": "اﻟﻔﺠﺮ",
+    "page": 653
+  },
+  {
+    "number": 90,
+    "name": "The Land",
+    "arabic": "اﻟـﺒﻠﺪ",
+    "page": 654
+  },
+  {
+    "number": 91,
+    "name": "The Sun",
+    "arabic": "اﻟـﺸـﻤـﺲ",
+    "page": 655
+  },
+  {
+    "number": 92,
+    "name": "The Night",
+    "arabic": ".   اﻟﻠﻴـﻞ",
+    "page": 656
+  },
+  {
+    "number": 93,
+    "name": "Morning Light",
+    "arabic": ".  اﻟﻀـﺤﻰ",
+    "page": 657
+  },
+  {
+    "number": 94,
+    "name": "The Soothing",
+    "arabic": ".   اﻟـﺸﺮح",
+    "page": 658
+  },
+  {
+    "number": 95,
+    "name": "The Fig",
+    "arabic": "اﻟـﺘﻴﻦ",
+    "page": 659
+  },
+  {
+    "number": 96,
+    "name": "Clot",
+    "arabic": "اﻟـﻌﻠﻖ",
+    "page": 659
+  },
+  {
+    "number": 97,
+    "name": "Decree",
+    "arabic": ".   اﻟﻘﺪر",
+    "page": 660
+  },
+  {
+    "number": 98,
+    "name": "Clear Evidence",
+    "arabic": ".  اﻟـﺒﻴﻨﺔ",
+    "page": 661
+  },
+  {
+    "number": 99,
+    "name": "The Quake",
+    "arabic": ".   اﻟﺰﻟﺰﻟﺔ",
+    "page": 661
+  },
+  {
+    "number": 100,
+    "name": "The Racers",
+    "arabic": ".  اﻟـﻌﺎدﻳﺎت",
+    "page": 662
+  },
+  {
+    "number": 101,
+    "name": "The Shocker",
+    "arabic": "اﻟـﻘﺎرﻋـﺔ",
+    "page": 663
+  },
+  {
+    "number": 102,
+    "name": "Abundance",
+    "arabic": "اﻟـﺘﻜﺎﺛﺮ",
+    "page": 663
+  },
+  {
+    "number": 103,
+    "name": "Time",
+    "arabic": "اﻟـﻌﺼﺮ",
+    "page": 664
+  },
+  {
+    "number": 104,
+    "name": "The Backbiter",
+    "arabic": "اﻟـﻬﻤﺰة",
+    "page": 664
+  },
+  {
+    "number": 105,
+    "name": "The Elephant",
+    "arabic": "اﻟـﻔﻴﻞ",
+    "page": 665
+  },
+  {
+    "number": 106,
+    "name": "Quraish",
+    "arabic": "ﻗﺮﻳﺶ",
+    "page": 665
+  },
+  {
+    "number": 107,
+    "name": "Assistance",
+    "arabic": ".  اﻟﻤﺎﻋﻮن",
+    "page": 665
+  },
+  {
+    "number": 108,
+    "name": "Plenty",
+    "arabic": "اﻟـﻜﻮﺛﺮ",
+    "page": 666
+  },
+  {
+    "number": 109,
+    "name": "The Disbelievers",
+    "arabic": "اﻟـﻜﺎﻓﺮون",
+    "page": 666
+  },
+  {
+    "number": 110,
+    "name": "Victory",
+    "arabic": "اﻟﻨﺼﺮ",
+    "page": 667
+  },
+  {
+    "number": 111,
+    "name": "Thorns",
+    "arabic": "اﻟـﻤﺴﺪ",
+    "page": 667
+  },
+  {
+    "number": 112,
+    "name": "Monotheism",
+    "arabic": ".  اﻹﺧﻼص",
+    "page": 667
+  },
+  {
+    "number": 113,
+    "name": "Daybreak",
+    "arabic": ".   اﻟـﻔﻠﻖ",
+    "page": 668
+  },
+  {
+    "number": 114,
+    "name": "Mankind",
+    "arabic": "اﻟـﻨﺎس",
+    "page": 668
+  }
+]
