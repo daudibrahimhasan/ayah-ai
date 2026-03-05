@@ -1,0 +1,864 @@
+آية
+Ayah
+Hear it. Know it. Read it.
+Master Documentation
+PRD  ·  FRD  ·  Tech Spec  ·  UI/UX  ·  API  ·  QA
+v1.0  ·  Android  ·  2026
+Table of Contents
+Section 1 — Product Requirements Document (PRD)
+1.1  App Overview
+Ayah (آية) is an AI-powered Quran Ayat recognition mobile application for Android. The name means 'verse' or 'sign' — one of the most fundamental concepts in Quranic study. Ayah listens to any live or recorded Quranic recitation and instantly identifies the Surah and Ayat being recited, then allows the user to tap the result to open the full Quran PDF at the exact matching Surah page — completely offline, with no internet connection required.
+1.2  Problem Statement
+Muslims worldwide — especially during Tarawih prayers — often hear beautiful Quranic recitations and cannot identify the exact Surah or Ayat being recited. Existing Quran apps require manual searching. No current app provides both:
+Real-time Ayat recognition for any unknown reciter in a live mosque environment
+Instant navigation to the identified Ayat inside a full Quran PDF for deeper reading and context
+1.3  Target Users
+User Type
+Description
+Key Need
+Tarawih Attendees
+Muslims attending Ramadan night prayers
+Identify ayat, then read the full page
+Quran Students
+Learners memorising or studying the Quran
+Verify ayat, jump to PDF for full context
+Non-Arabic Speakers
+Muslims who recite phonetically
+Understand what is being recited
+Mosque Goers
+Regular prayer attendees
+Follow along with the Imam in the Quran
+Quran Teachers
+Educators teaching recitation
+Quickly reference any ayat in the PDF
+1.4  Core Features — Version 1.0
+Feature
+Description
+Ayat Recognition
+Real-time mic listening + AI identification of Surah & Ayat
+PDF Quran Viewer
+Built-in viewer for the full Quran PDF (Arabic + English)
+Tap-to-PDF Navigation
+Tap any recognised Ayat result to open PDF at the exact Surah page
+Quran Browser
+Browse all 114 Surahs and 6,236 Ayat with Arabic text + translation
+Bookmarking
+Save identified or browsed Ayat to a personal Library
+Recitation History
+Auto-log of all identified Ayat with timestamps and confidence scores
+Offline Mode
+All features — recognition, PDF, browser — work with zero internet
+Multi-language
+UI and translations available in all major world languages
+1.5  PDF Quran Feature — Key Requirements
+ℹ  The Quran PDF used is ClearQuran (clearquran.com) — Arabic + English translation, 668 pages, Creative Commons licensed (free for bundling in apps). The complete Surah-to-page mapping for all 114 Surahs is pre-built and bundled as a JSON asset.
+PDF is bundled inside the APK — works fully offline, no download needed
+User taps a recognised Ayat result card → PDF opens at the correct Surah page
+PDF viewer is built into the app — no external app opens
+User can scroll freely through the PDF from any opened page
+PDF viewer includes: zoom in/out, page indicator, back button to return to recognition result
+Page mapping JSON covers all 114 Surahs mapped to their exact PDF page numbers
+1.6  Success Metrics
+Metric
+Target (3 months)
+Target (12 months)
+App Downloads
+10,000+
+100,000+
+Recognition Accuracy
+85%+ (clean audio)
+92%+
+PDF Tap-to-Open Rate
+50%+ of recognitions
+65%+
+Daily Active Users
+1,000+
+20,000+
+Avg Session Duration
+4+ minutes
+7+ minutes
+Play Store Rating
+4.2+
+4.5+
+Crash Rate
+< 1%
+< 0.5%
+1.7  Out of Scope — Version 1.0
+iOS version (planned for Version 2.0)
+Tajweed error correction feedback
+Social sharing features
+Audio playback of reciters
+User accounts or cloud sync
+Highlighting specific Ayat inside the PDF (planned for Version 1.5)
+Section 2 — Functional Requirements Document (FRD)
+2.1  Feature: Ayat Recognition
+User Flow
+User opens app and lands on the Home screen
+User taps the large mint microphone button at the centre of the screen
+App requests microphone permission (first time only)
+App begins listening — waveform animation plays around the button
+After 3–10 seconds, app processes the captured recitation on-device
+Result card slides up: Surah name (Arabic + transliteration), Ayat number, Arabic text, English translation, match confidence score
+User can tap the result card to open the Quran PDF at the Surah page
+User can also bookmark the result or dismiss it
+Edge Cases — Ayat Recognition
+Scenario
+App Behaviour
+No speech detected
+Show: 'No recitation detected. Please try again.'
+Audio too noisy
+Show: 'Audio unclear. Move to a quieter spot.'
+Confidence below 50%
+Show top 3 possible matches with individual scores, each tappable to PDF
+Mic permission denied
+Show settings prompt to enable microphone access
+Partial ayat recited
+Attempt match, show confidence score clearly
+Non-Quranic speech
+Show: 'No Quranic recitation detected.'
+2.2  Feature: PDF Quran Viewer
+Entry Points — How the User Opens the PDF Viewer
+Tap a recognised Ayat result card → opens PDF at that Surah's start page
+Tap a Surah in the Quran Browser → opens PDF at that Surah's start page
+Tap a bookmarked Ayat in Library → opens PDF at that Surah's start page
+Tap a history entry in Profile → opens PDF at that Surah's start page
+PDF Viewer User Flow
+PDF viewer opens as a full-screen overlay with a smooth slide-up animation
+Page opens directly at the mapped page for the identified Surah
+Header bar shows: Back arrow | Surah name | current page / total pages (668)
+User can pinch-to-zoom, double-tap to zoom, and scroll vertically through pages
+Floating page jump button (bottom-right) lets user jump to any Surah directly
+Back arrow or swipe-down closes viewer and returns user to the previous screen
+ℹ  Page Mapping Logic: The app uses a pre-built JSON file (quran_page_mapping.json) that maps all 114 Surah numbers to their exact PDF page. Example: Surah 1 = Page 8, Surah 2 = Page 9, Surah 23 = Page 356, Surah 36 = Page 464. This mapping was extracted by analysing the ClearQuran PDF structure.
+Edge Cases — PDF Viewer
+Scenario
+App Behaviour
+PDF fails to load
+Show error with retry button
+Page mapping not found
+Open PDF at page 1 with an explanatory note
+User scrolls away from opened page
+Normal scrolling — no restrictions
+Low device memory
+PDF renders page-by-page, not all at once
+User taps back button
+Returns to result card / previous screen
+2.3  Feature: Quran Browser
+User taps 'Quran' in the bottom navigation bar
+Sees a list of all 114 Surahs: Arabic name, transliteration, Ayat count, Meccan/Medinan label
+Each Surah card has a 'Read in PDF' button that opens the PDF viewer at that Surah
+Tapping the Surah name opens the in-app text view showing all Ayat as cards
+Inside text view, each Ayat has a 'View in PDF' icon to jump to the PDF
+Search bar at top supports searching by Surah name or number
+2.4  Feature: Bookmarking
+User taps bookmark icon on any recognised, browsed, or PDF-viewed Ayat
+Bookmark saved to Library with Surah name, Ayat number, and timestamp
+Tapping a bookmark opens the Ayat detail view with 'Open in PDF' button
+Long press a bookmark to delete it
+All data stored locally — no account or internet needed
+2.5  Feature: Recitation History
+Auto-logged every time recognition completes successfully
+Accessible from the Profile tab under the History section
+Each entry shows: Surah name, Ayat number, date/time, confidence score, 'Open PDF' button
+Tapping any entry opens the Ayat detail view with an option to open PDF
+User can clear all history from Profile settings
+2.6  Navigation Structure
+Section
+Location
+Contents
+Home
+Bottom nav — centre
+Mic button, last result card, quick stats
+Quran
+Bottom nav — right
+Surah list with PDF access, search
+Profile
+Bottom nav — left
+History, settings, language, about
+Library
+Top-left of Home
+Bookmarks with PDF access
+PDF Viewer
+Full-screen overlay
+Opens from any Ayat result, bookmark, or browser
+2.7  Language Support
+Region
+Languages
+Priority
+South Asia
+Bengali, Urdu, Hindi
+High
+Middle East
+Arabic, Turkish, Persian
+High
+Southeast Asia
+Indonesian, Malay
+High
+Europe / Americas
+English, French, German, Spanish
+Medium
+Africa
+Swahili, Hausa
+Medium
+Section 3 — Technical Specification Document
+3.1  Architecture Overview
+Ayah uses an offline-first architecture. The AI model, Quran database, Quran PDF, and Surah-to-page mapping are all bundled inside the APK. No internet is required for any core feature. An optional online mode uses a hosted model for higher accuracy when connectivity is available.
+ℹ  Full Flow: Mic Input → Audio Preprocessing → Whisper Model → Arabic Text → Fuzzy Match → Quran DB → Result Card → [User Taps] → PDF Viewer opens at mapped Surah page
+3.2  Tech Stack
+Layer
+Technology
+Mobile Framework
+Flutter (Dart) — single codebase for Android
+AI Model
+tarteel-ai/whisper-base-ar-quran (Apache 2.0, free)
+Model Runtime
+ONNX Runtime Mobile — on-device inference
+Audio Capture
+flutter_sound or record package
+Text Matching
+RapidFuzz algorithm ported to Dart
+Local Database
+SQLite via sqflite Flutter package
+Quran Text Data
+Tanzil.net (Arabic) + quran-json (translations)
+PDF Viewer
+syncfusion_flutter_pdfviewer (free community tier)
+PDF Asset
+ClearQuran PDF — 668 pages, bundled in assets/
+Page Mapping
+quran_page_mapping.json — bundled in assets/
+State Management
+Riverpod
+Optional Backend
+Hugging Face Inference API (free tier)
+3.3  AI Model Details
+Property
+Value
+Model Name
+tarteel-ai/whisper-base-ar-quran
+Base Model
+OpenAI Whisper Base
+License
+Apache 2.0 — free including commercial use
+Model Size
+~145 MB
+Word Error Rate (WER)
+5.75% on Quranic test set
+Required Input
+16kHz, mono, float32 WAV audio
+Output
+Arabic text (UTF-8 with diacritics)
+Runtime
+ONNX Runtime Mobile, on-device
+Avg Inference Time
+2–5 seconds on mid-range Android
+3.4  PDF Viewer — Technical Implementation
+Assets
+quran-arabic-english-clearquran.pdf → bundled in Flutter assets/pdf/
+quran_page_mapping.json → bundled in Flutter assets/data/
+PDF license: Creative Commons (CC BY-NC-ND) — free for app bundling
+Page Mapping JSON Structure
+{
+  "1":   { "surah_number": 1,   "surah_name": "Al-Fatiha",   "page": 8   },
+  "2":   { "surah_number": 2,   "surah_name": "Al-Baqarah",  "page": 9   },
+  "23":  { "surah_number": 23,  "surah_name": "Al-Muminun",  "page": 356 },
+  "36":  { "surah_number": 36,  "surah_name": "Ya-Sin",      "page": 464 },
+  "114": { "surah_number": 114, "surah_name": "An-Nas",      "page": 668 }
+}
+Flutter Integration Code Pattern
+// 1. Load mapping at app startup
+final String raw = await rootBundle.loadString("assets/data/quran_page_mapping.json");
+final Map mapping = jsonDecode(raw);
+// 2. When user taps a recognition result
+void openPDFAtSurah(int surahNumber) {
+  final int page = mapping[surahNumber.toString()]["page"];
+  Navigator.push(context, MaterialPageRoute(
+    builder: (_) => AyahPDFViewer(initialPage: page, surahName: surahName),
+  ));
+}
+// 3. PDF Viewer widget using syncfusion
+SfPdfViewer.asset(
+  "assets/pdf/quran-arabic-english-clearquran.pdf",
+  initialPageNumber: initialPage,
+  controller: _pdfController,
+)
+3.5  Audio Processing Pipeline
+Capture: 16kHz, mono, 16-bit PCM via device microphone
+Chunk: Split into 30-second windows (Whisper maximum input length)
+Normalise: Adjust volume levels for consistent model input
+Denoise: Basic noise gate to reduce mosque reverb and crowd noise
+Convert: Feed normalised float32 array into Whisper ONNX model
+Post-process: Strip diacritics for fuzzy matching if needed
+3.6  Quran Database Schema
+Table
+Columns
+Notes
+surahs
+id, name_arabic, name_english, name_transliteration, revelation_type, ayat_count, pdf_page
+114 rows — pdf_page links to mapping
+ayat
+id, surah_id, ayat_number, text_arabic, text_uthmani
+6,236 rows
+translations
+id, ayat_id, language_code, text
+Per-language translations
+bookmarks
+id, ayat_id, created_at, note
+Local only, user data
+history
+id, ayat_id, recognised_at, confidence_score
+Auto-logged, local only
+3.7  Offline vs Online Mode
+Factor
+Offline Mode
+Online Mode
+Internet required
+No
+Yes
+AI Model location
+On-device ONNX (bundled)
+Hugging Face API
+PDF Viewer
+Always works (bundled)
+Always works (bundled)
+Recognition speed
+2–5 seconds
+1–2 seconds
+Accuracy
+85–90%
+90–95%
+Cost to developer
+Free
+Free (HF limits)
+Works in mosque
+Always
+Depends on WiFi
+3.8  App Size Budget
+Component
+Estimated Size
+Flutter framework
+~20 MB
+Whisper ONNX model
+~145 MB
+ClearQuran PDF (bundled)
+~15 MB
+Quran text database
+~5 MB
+Translations (all languages)
+~30 MB
+Page mapping JSON
+< 0.1 MB
+App code + UI assets
+~10 MB
+Total estimated APK size
+~225 MB
+3.9  Security & Privacy
+No audio stored permanently — deleted immediately after processing
+No user data sent to any server in offline mode
+All personal data (bookmarks, history) stored in local SQLite only
+No user account or login required
+App requests only microphone permission — no contacts, location, or camera
+PDF is a read-only asset — no user data written to it
+Full compliance with Google Play data safety requirements
+Section 4 — UI/UX Design Documentation
+4.1  Design Language
+Property
+Value
+Visual Style
+Claymorphism — soft 3D rounded cards with layered mint shadows
+Primary Color
+#3EB489 — Mint Green
+Background
+#F0FBF6 — Very light mint tint
+Surface / Cards
+White with mint shadow, border-radius 24px
+Typography — Latin
+Inter (clean, modern, highly legible)
+Typography — Arabic
+Amiri (classical, beautiful Quranic rendering)
+Icon Style
+Rounded, filled, mint-coloured
+Animation
+Soft spring animations, breathing mic pulse, PDF slide-up
+4.2  Color Palette
+Name
+Hex
+Usage
+Mint Primary
+#3EB489
+Buttons, icons, active nav, banners, PDF header
+Mint Light
+#D6F5EC
+Card backgrounds, input fills, info boxes
+Mint Mid
+#A8E6CF
+Hover states, progress bars, PDF page indicator
+Dark Green
+#1A2E2A
+Headings and primary body text
+Gray
+#6B7280
+Secondary text, placeholders, PDF page numbers
+White
+#FFFFFF
+Card surfaces, PDF viewer background
+Background
+#F0FBF6
+Main screen background throughout
+Error Red
+#EF4444
+Error messages, low confidence badges
+4.3  Claymorphism Rules
+All interactive cards: border-radius 24px
+Shadow: 0 8px 32px rgba(62, 180, 137, 0.18) — mint-tinted soft shadow
+Subtle mint border: 1.5px solid rgba(62, 180, 137, 0.2)
+Primary buttons: layered 3D shadow simulating clay depth
+Pressed state: scales to 0.97 with shadow shrinking
+Background always #F0FBF6 — complements white clay cards
+PDF viewer departs from claymorphism — uses clean white + mint header for readability
+4.4  Screen Descriptions
+Home Screen
+Top-left: 'Library' clay button with bookmark icon
+Top-right: App name 'آية' in mint with small logo
+Centre: Large circular clay mic button in mint — breathing pulse when listening
+Below mic: Status label — 'Tap to listen' / 'Listening...' / 'Identifying...'
+Below status: Waveform bar animation when mic is active
+Bottom card: Last identified Ayat — Surah name, Ayat number, 'Open in PDF →' link
+Bottom navigation: Profile (left) | Home (centre dot) | Quran (right)
+Recognition Result Screen
+Full-screen clay card slides up after recognition completes
+Top: Surah number badge | Arabic Surah name | Surah transliteration
+Middle: Full Arabic Ayat in large Amiri font, right-to-left layout
+Below Arabic: English translation in gray
+Confidence badge (green if >80%, yellow if 50–80%, red if <50%)
+Prominent mint button: 'Open in Quran PDF →' — this is the primary CTA
+Secondary actions: Bookmark icon | Share icon
+Swipe down to dismiss the result card
+PDF Viewer Screen
+Opens as full-screen overlay with slide-up animation from result card
+Header: Back arrow (←) | Surah name in mint | 'Page X / 668' indicator
+Header background: mint (#3EB489) — clean contrast for readability
+PDF renders in white — clean, no tinting, maximum readability for Arabic text
+Pinch-to-zoom, double-tap to zoom (50%–300%), vertical scroll
+Floating Action Button (bottom-right): book icon — opens Surah jump sheet
+Surah jump sheet: scrollable list of all 114 Surahs, tap any to jump to its page
+Thin mint progress bar at top indicates scroll position through the PDF
+Back button or swipe-down returns to result card / previous screen
+Quran Browser Screen
+Sticky search bar at top with mint focus ring
+Each Surah: clay card with Arabic name, transliteration, Ayat count badge, revelation type
+Each Surah card has two actions: 'Browse Ayat' (text view) | 'Read PDF' (opens PDF viewer)
+Inside Ayat text view: each Ayat is a card with Arabic text, translation, bookmark icon, 'View in PDF' icon
+Library Screen
+Grid of bookmarked Ayat clay cards — 2 columns
+Each card: Surah name, Ayat number, date bookmarked, 'Open PDF' icon
+Empty state: illustration + 'No bookmarks yet. Start listening!'
+Long press to delete; tap to open Ayat detail with PDF button
+Profile Screen
+Language selector with flag + name in clay dropdown
+Recognition History: list with timestamp, Surah, Ayat, confidence, 'PDF' button per entry
+Settings: Theme, clear history, clear bookmarks, app version
+About: Open source credits, ClearQuran PDF attribution, privacy policy
+4.5  PDF Viewer Design Specifications
+Element
+Specification
+Header height
+56dp
+Header color
+Mint #3EB489
+Header text
+White, Inter Bold 16sp
+Page background
+Pure white #FFFFFF
+Progress bar
+2dp height, mint colour, top of screen
+FAB (jump button)
+Mint, 56dp, book icon, shadow
+Jump sheet
+Bottom sheet, rounded 24dp top, white, Surah list
+Zoom range
+50% minimum — 300% maximum
+Page transition
+Smooth vertical scroll, no page-flip animation
+4.6  User Journey — Tarawih Prayer with PDF
+Step
+User Action
+App Response
+1
+Opens Ayah before Tarawih
+Home loads, model ready, PDF loaded
+2
+Imam recites, user taps mic
+Listening animation starts
+3
+App captures 5–8 seconds
+Waveform pulses
+4
+App identifies the Ayat
+Result card slides up
+5
+User reads the translation
+Full Ayat shown with confidence
+6
+User taps 'Open in Quran PDF'
+PDF viewer opens at Surah page
+7
+User reads the full page context
+PDF shows Arabic + English side by side
+8
+User bookmarks the page
+Saved to Library with PDF link
+9
+User taps back, Imam continues
+Returns to Home, taps mic again
+Section 5 — API Documentation
+ℹ  Ayah is primarily an offline app. The PDF viewer, Quran browser, and all local features require no API. The API is only used when the user has internet access and the app uses online mode for higher-accuracy recognition. The backend is hosted on Hugging Face Spaces (free tier).
+5.1  Base URL
+https://ayah-api.hf.space/api/v1
+5.2  Authentication
+Version 1.0 uses no authentication. The API is public and rate-limited by IP. Future versions may introduce optional API keys for higher-tier usage.
+5.3  Endpoints
+POST /recognize
+Accepts audio, transcribes it using the Quranic Whisper model, and returns the best matching Ayat plus the PDF page number for direct navigation.
+Property
+Value
+Method
+POST
+Content-Type
+multipart/form-data
+Rate Limit
+60 requests / hour / IP
+Max File Size
+10 MB
+Max Audio Length
+60 seconds
+Request Fields
+Field
+Description
+audio (file, required)
+Audio file — MP3, WAV, or M4A format
+language (string, optional)
+Translation language code. Default: 'en'
+top_n (integer, optional)
+Number of match candidates to return. Default: 1, Max: 5
+Success Response — 200 OK
+{
+  "transcription":      "qul liman al-ardu wa man fiha",
+  "surah_number":       23,
+  "surah_name_arabic":  "Al-Muminun",
+  "surah_name_english": "The Believers",
+  "ayat_number":        84,
+  "ayat_text_arabic":   "full Arabic ayat text",
+  "translation":        "Say: To whom belongs the earth?",
+  "confidence":         0.91,
+  "pdf_page":           356,
+  "processing_time_ms": 1840
+}
+ℹ  The pdf_page field is included in every API response. The app uses this value to directly call pdfController.jumpToPage(pdf_page) when the user taps the result — no additional lookup needed.
+Error Responses
+HTTP Code
+Error Key
+Meaning
+400
+invalid_audio
+File format not supported or corrupted
+400
+audio_too_short
+Audio is less than 2 seconds
+413
+file_too_large
+File exceeds 10 MB limit
+422
+no_speech_detected
+No Quranic speech found in audio
+429
+rate_limit_exceeded
+Too many requests — wait 60 seconds
+500
+model_error
+Model failure — app falls back to offline mode
+GET /health
+Check if the API server and model are online.
+{
+  "status":         "ok",
+  "model":          "loaded",
+  "model_name":     "tarteel-ai/whisper-base-ar-quran",
+  "uptime_seconds": 84320
+}
+GET /languages
+Returns all supported translation language codes.
+{
+  "languages": [
+    { "code": "en", "name": "English" },
+    { "code": "ar", "name": "Arabic" },
+    { "code": "bn", "name": "Bengali" },
+    { "code": "ur", "name": "Urdu" },
+    { "code": "id", "name": "Indonesian" }
+  ]
+}
+GET /surah-pages
+Returns the complete Surah-to-PDF-page mapping for all 114 Surahs. Used during app initialisation or if the bundled JSON needs refreshing.
+{
+  "pdf_total_pages": 668,
+  "source_pdf": "ClearQuran Arabic-English (clearquran.com)",
+  "mapping": {
+    "1":   { "surah_name": "Al-Fatiha",  "page": 8   },
+    "2":   { "surah_name": "Al-Baqarah", "page": 9   },
+    "...": "...",
+    "114": { "surah_name": "An-Nas",      "page": 668 }
+  }
+}
+5.4  App Integration Flow
+App checks connectivity on each recognition attempt
+Online: POST audio to /recognize → get result with pdf_page → show result card
+Offline: run local Whisper → match local DB → look up pdf_page from local JSON
+User taps 'Open in PDF' → app calls pdfController.jumpToPage(pdf_page)
+PDF opens instantly — no network call needed regardless of online/offline mode
+On API error or timeout: seamlessly fall back to offline recognition
+Section 6 — Test Plan & QA Documentation
+6.1  Testing Scope
+This document covers all QA testing for Ayah Version 1.0. Tests cover six feature areas: Ayat Recognition, PDF Quran Viewer, Quran Browser, Bookmarking, Recitation History, and Offline Mode. All tests must pass before Google Play Store submission.
+6.2  Test Devices
+Category
+Device Example
+Why Test
+Low-end Android
+Samsung Galaxy A03 (3GB RAM)
+Worst-case PDF rendering + model performance
+Mid-range Android
+Xiaomi Redmi Note 12 (6GB RAM)
+Most common target user device
+High-end Android
+Samsung Galaxy S23 (8GB RAM)
+Best-case baseline performance
+6.3  Test Cases — Ayat Recognition
+TC#
+Test Case
+Expected Result
+Pass Criteria
+TC01
+Clear audio — Al-Fatiha Ayat 1
+Correct Surah + Ayat identified
+Confidence > 85%
+TC02
+Clear audio — random Surah mid-ayat
+Correct identification
+Confidence > 80%
+TC03
+Background noise (street)
+Top match shown
+Shows top 3 matches
+TC04
+Mosque echo environment
+Partial match or top 3
+No crash
+TC05
+Non-Quranic speech
+No match message shown
+Friendly error displayed
+TC06
+Silence / empty recording
+No speech message
+Friendly error displayed
+TC07
+Partial ayat — first half only
+Partial match attempt
+Confidence score visible
+TC08
+Child's voice reciting
+Recognition attempted
+Result or top 3 shown
+TC09
+Very fast recitation
+Recognition attempted
+No crash
+TC10
+Offline recognition
+Uses on-device model
+Works with no internet
+TC11
+Online recognition
+Uses API model
+Faster result returned
+TC12
+API timeout during online
+Falls back to offline
+Seamless fallback
+6.4  Test Cases — PDF Quran Viewer
+TC#
+Test Case
+Expected Result
+Pass Criteria
+TC13
+Tap result card 'Open in PDF'
+PDF opens at correct Surah page
+Page matches mapping JSON
+TC14
+Tap Surah 1 result — PDF opens
+Page 8 of PDF shown
+Correct page loaded
+TC15
+Tap Surah 23 result — PDF opens
+Page 356 of PDF shown
+Correct page loaded
+TC16
+Tap Surah 114 result — PDF opens
+Page 668 of PDF shown
+Correct page loaded
+TC17
+Pinch to zoom in PDF
+Zooms in smoothly
+No crash, no lag
+TC18
+Scroll through PDF pages
+Pages scroll smoothly
+No blank pages, no crash
+TC19
+Tap Surah jump FAB
+Jump sheet appears
+All 114 Surahs listed
+TC20
+Jump to Surah 36 from sheet
+PDF jumps to page 464
+Correct page shown
+TC21
+Back button from PDF viewer
+Returns to result screen
+State preserved
+TC22
+PDF open with no internet
+PDF opens normally
+Works fully offline
+TC23
+Open PDF on low-end device
+PDF renders correctly
+No OOM crash
+TC24
+PDF page indicator accuracy
+Shows correct page / 668
+Always accurate
+TC25
+Open PDF from Library bookmark
+Correct Surah page opens
+Matches bookmark data
+TC26
+Open PDF from History entry
+Correct Surah page opens
+Matches history data
+TC27
+Open PDF from Quran Browser
+Correct Surah page opens
+Matches selected Surah
+6.5  Test Cases — Quran Browser, Bookmarks & History
+TC#
+Test Case
+Expected Result
+TC28
+Open Quran browser
+All 114 Surahs load correctly
+TC29
+Search 'Fatiha'
+Al-Fatiha shown as first result
+TC30
+Open Surah, scroll Ayat
+All Ayat render in Arabic correctly
+TC31
+Bookmark a recognised Ayat
+Appears in Library immediately
+TC32
+Bookmark duplicate Ayat
+No duplicate — 'Already saved' shown
+TC33
+Delete bookmark (long press)
+Removed from Library
+TC34
+History logged after recognition
+Entry in Profile > History
+TC35
+Bookmarks persist after restart
+Library still populated
+TC36
+PDF button in history entry
+Opens PDF at correct Surah page
+6.6  Performance Benchmarks
+Metric
+Minimum Acceptable
+Target
+Recognition time (offline)
+< 8 seconds
+< 4 seconds
+Recognition time (online)
+< 4 seconds
+< 2 seconds
+PDF initial open time
+< 3 seconds
+< 1.5 seconds
+PDF page jump time
+< 1 second
+< 0.5 seconds
+PDF scroll FPS
+30+ fps
+60 fps
+App cold launch time
+< 3 seconds
+< 1.5 seconds
+Memory usage (peak)
+< 450 MB
+< 280 MB
+Battery per 10 recognitions
+< 5%
+< 3%
+APK install size
+< 500 MB
+< 250 MB
+Crash rate
+< 2%
+< 0.5%
+6.7  Acceptance Criteria
+The app is ready for Google Play Store submission when ALL of the following are true:
+All TC01 through TC36 test cases pass on all three test devices
+Ayat recognition accuracy >= 85% on a clean audio test set of 50 recordings
+PDF opens at the correct page for all 114 Surahs without a single page mismatch
+PDF viewer works fully offline with zero internet connection
+App does not crash on 20 consecutive recognitions followed by 20 PDF opens
+All 114 Surahs and 6,236 Ayat render correctly in Arabic in the text browser
+Bookmarks and history persist correctly after app restart
+Tested on low, mid, and high-end Android devices
+No personally identifiable data stored or transmitted
+PDF renders without blank pages or corruption on all test devices
+6.8  Bug Priority Levels
+Priority
+Definition & Response Time
+P0 — Critical
+App crashes, PDF fails to open, data loss, recognition completely broken. Fix within 24 hours.
+P1 — High
+PDF opens wrong page, core feature broken, wrong Ayat > 50%. Fix within 3 days.
+P2 — Medium
+PDF scroll lag, minor recognition inaccuracy, one translation missing. Fix within 1 week.
+P3 — Low
+PDF cosmetic issue, minor UI glitch, non-blocking imperfection. Fix in next sprint.
+6.9  PDF-Specific Bug Reporting Template
+Field
+Description
+Bug ID
+Auto-generated (e.g. AY-042)
+Feature Area
+PDF Viewer / Recognition / Browser / Bookmark / History
+Priority
+P0 / P1 / P2 / P3
+Device
+Device name + Android version + RAM
+Surah Tested
+Which Surah was being tested (if PDF-related)
+Expected PDF Page
+What page should have opened
+Actual PDF Page
+What page actually opened
+Steps to Reproduce
+Numbered steps to trigger the bug
+Screenshot / Video
+Attach if available
+Status
+Open / In Progress / Fixed / Verified
+Ayah  آية  —  Hear it. Know it. Read it.
+Master Documentation v1.0  ·  Android  ·  2026

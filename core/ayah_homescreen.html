@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Ayah — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --mint:       #3EB489;
+    --mint-deep:  #2A9470;
+    --mint-glow:  #5ECFA5;
+    --mint-lt:    #A8E6CF;
+    --mint-xlt:   #D6F5EC;
+    --bg-top:     #1A3D2E;
+    --bg-mid:     #0F6B4A;
+    --bg-bot:     #083D2A;
+    --white:      #FFFFFF;
+    --white70:    rgba(255,255,255,0.70);
+    --white40:    rgba(255,255,255,0.40);
+    --white20:    rgba(255,255,255,0.20);
+    --white10:    rgba(255,255,255,0.10);
+    --white08:    rgba(255,255,255,0.08);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* ── Phone Shell ── */
+  .shell {
+    width: 390px;
+    height: 844px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 54px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 10px #111,
+      0 40px 100px rgba(0,0,0,0.6),
+      inset 0 0 0 1.5px rgba(255,255,255,0.12);
+    background: var(--bg-bot);
+  }
+
+  /* Center shell on screen */
+  body {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+    background: #060E0A;
+  }
+
+  /* ── Gradient Background ── */
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 15%, #2A7A55 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, #1A4A32 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 70%, #0D5538 0%, transparent 60%),
+      linear-gradient(175deg, #1B4D36 0%, #0A3D28 40%, #062A1A 100%);
+    z-index: 0;
+  }
+
+  /* subtle noise texture */
+  .bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.6;
+  }
+
+  /* ── Status Bar ── */
+  .status-bar {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px 0;
+    height: 50px;
+  }
+  .status-time {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+  .status-icons {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .status-icons svg { opacity: 0.9; }
+  .battery {
+    display: flex; align-items: center; gap: 3px;
+  }
+  .battery-body {
+    width: 24px; height: 12px;
+    border: 1.5px solid var(--white); border-radius: 3px;
+    position: relative;
+    display: flex; align-items: center;
+    padding: 2px;
+  }
+  .battery-body::after {
+    content: '';
+    position: absolute; right: -5px; top: 50%; transform: translateY(-50%);
+    width: 3px; height: 5px;
+    background: var(--white);
+    border-radius: 0 2px 2px 0;
+  }
+  .battery-fill {
+    width: 65%; height: 100%;
+    background: var(--mint-glow);
+    border-radius: 1.5px;
+  }
+
+  /* ── Top Nav ── */
+  .top-nav {
+    position: relative; z-index: 10;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 16px 28px 0;
+  }
+  .nav-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  .nav-btn:active { transform: scale(0.93); }
+  .nav-icon {
+    width: 44px; height: 44px;
+    background: var(--white10);
+    border: 1.5px solid var(--white20);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .nav-icon svg { width: 20px; height: 20px; fill: var(--white); }
+  .nav-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--white);
+    letter-spacing: 0.2px;
+  }
+
+  /* ── Dots ── */
+  .dots {
+    display: flex; align-items: center; gap: 6px;
+    padding-top: 28px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--white40);
+  }
+  .dot.active {
+    background: var(--white);
+    width: 20px;
+    border-radius: 4px;
+  }
+
+  /* ── Prompt Text ── */
+  .prompt {
+    position: relative; z-index: 10;
+    text-align: center;
+    margin-top: 60px;
+    padding: 0 40px;
+  }
+  .prompt-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 26px;
+    color: var(--white70);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+  .prompt-main {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  /* ── Big Mic Button ── */
+  .mic-wrap {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 44px;
+  }
+
+  /* Outer ring pulse */
+  .mic-pulse-ring {
+    position: absolute;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 2px solid rgba(62,180,137,0.25);
+    animation: pulseRing 2.4s ease-out infinite;
+  }
+  .mic-pulse-ring:nth-child(2) {
+    width: 210px; height: 210px;
+    border-color: rgba(62,180,137,0.18);
+    animation-delay: 0.6s;
+  }
+
+  @keyframes pulseRing {
+    0%   { transform: scale(0.88); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: scale(1.12); opacity: 0; }
+  }
+
+  /* The button itself */
+  .mic-btn {
+    position: relative;
+    width: 188px; height: 188px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+
+    /* Claymorphism: layered mint glass */
+    background:
+      radial-gradient(circle at 38% 32%, rgba(255,255,255,0.22) 0%, transparent 55%),
+      radial-gradient(circle at 70% 75%, rgba(0,0,0,0.12) 0%, transparent 50%),
+      linear-gradient(145deg, #4DC99A 0%, #2EA07A 50%, #1E7A5C 100%);
+
+    box-shadow:
+      0 0 0 3px rgba(255,255,255,0.15),
+      0 16px 60px rgba(46,160,122,0.50),
+      0 4px 20px rgba(0,0,0,0.30),
+      inset 0 2px 8px rgba(255,255,255,0.25),
+      inset 0 -4px 12px rgba(0,0,0,0.15);
+  }
+
+  .mic-btn:active {
+    transform: scale(0.94);
+    box-shadow:
+      0 0 0 3px rgba(255,255,255,0.12),
+      0 8px 30px rgba(46,160,122,0.40),
+      0 2px 10px rgba(0,0,0,0.25),
+      inset 0 2px 8px rgba(255,255,255,0.20);
+  }
+
+  /* Ayah logo inside button */
+  .mic-logo {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .mic-logo-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .mic-logo-latin {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Breathing animation on idle */
+  .mic-btn {
+    animation: breathe 3.2s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.035); }
+  }
+  .mic-btn:active { animation: none; }
+
+  /* ── Waveform ── */
+  .waveform {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    height: 32px;
+    margin-top: 32px;
+  }
+  .wave-bar {
+    width: 3px;
+    background: var(--white40);
+    border-radius: 2px;
+    animation: wave 1.4s ease-in-out infinite;
+  }
+  .wave-bar:nth-child(1)  { height: 8px;  animation-delay: 0s; }
+  .wave-bar:nth-child(2)  { height: 14px; animation-delay: 0.1s; }
+  .wave-bar:nth-child(3)  { height: 20px; animation-delay: 0.2s; }
+  .wave-bar:nth-child(4)  { height: 28px; animation-delay: 0.3s; }
+  .wave-bar:nth-child(5)  { height: 18px; animation-delay: 0.4s; background: var(--mint-lt); }
+  .wave-bar:nth-child(6)  { height: 26px; animation-delay: 0.5s; background: var(--mint); }
+  .wave-bar:nth-child(7)  { height: 32px; animation-delay: 0.6s; background: var(--mint-glow); }
+  .wave-bar:nth-child(8)  { height: 22px; animation-delay: 0.7s; background: var(--mint); }
+  .wave-bar:nth-child(9)  { height: 28px; animation-delay: 0.8s; background: var(--mint-lt); }
+  .wave-bar:nth-child(10) { height: 16px; animation-delay: 0.9s; }
+  .wave-bar:nth-child(11) { height: 24px; animation-delay: 1.0s; }
+  .wave-bar:nth-child(12) { height: 10px; animation-delay: 1.1s; }
+  .wave-bar:nth-child(13) { height: 18px; animation-delay: 1.2s; }
+  .wave-bar:nth-child(14) { height: 8px;  animation-delay: 1.3s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.45); opacity: 0.6; }
+    50%       { transform: scaleY(1);    opacity: 1; }
+  }
+
+  /* ── Status label ── */
+  .status-label {
+    position: relative; z-index: 10;
+    text-align: center;
+    margin-top: 14px;
+  }
+  .status-label span {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white40);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Search Button ── */
+  .search-wrap {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 40px;
+  }
+  .search-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--white10);
+    border: 1.5px solid var(--white20);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .search-btn:active {
+    transform: scale(0.93);
+    background: var(--white20);
+  }
+  .search-btn svg { width: 22px; height: 22px; stroke: var(--white); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── Last Result Card ── */
+  .last-result {
+    position: absolute; z-index: 10;
+    bottom: 42px; left: 20px; right: 20px;
+    background: var(--white08);
+    border: 1.5px solid var(--white20);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 22px;
+    padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+  .last-result-left { display: flex; align-items: center; gap: 12px; }
+  .result-dot {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--mint) 0%, var(--mint-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(62,180,137,0.35);
+    flex-shrink: 0;
+  }
+  .result-dot span {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .result-info {}
+  .result-surah {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .result-ayat {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--white70);
+  }
+  .result-open {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--mint-glow);
+    display: flex; align-items: center; gap: 4px;
+    letter-spacing: 0.2px;
+  }
+  .result-open svg { width: 14px; height: 14px; stroke: var(--mint-glow); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── Bottom Home Indicator ── */
+  .home-bar {
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 5px;
+    background: var(--white40);
+    border-radius: 3px;
+    z-index: 20;
+  }
+
+  /* ── Dynamic Island ── */
+  .island {
+    position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 34px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 30;
+  }
+
+  /* Screen gloss */
+  .gloss {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, transparent 40%);
+    pointer-events: none;
+    border-radius: 54px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <div class="bg"></div>
+  <div class="gloss"></div>
+  <div class="island"></div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="status-time">12:37</span>
+    <div class="status-icons">
+      <!-- signal bars -->
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <rect x="0"  y="9"  width="3" height="5" rx="1" fill="white" opacity="0.4"/>
+        <rect x="5"  y="6"  width="3" height="8" rx="1" fill="white" opacity="0.6"/>
+        <rect x="10" y="3"  width="3" height="11" rx="1" fill="white" opacity="0.8"/>
+        <rect x="15" y="0"  width="3" height="14" rx="1" fill="white"/>
+      </svg>
+      <!-- wifi -->
+      <svg width="16" height="13" viewBox="0 0 16 13" fill="white">
+        <path d="M8 10.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/>
+        <path d="M4.5 7.5C5.6 6.4 6.7 5.8 8 5.8s2.4.6 3.5 1.7" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M1.5 4.5C3.2 2.8 5.5 1.8 8 1.8s4.8 1 6.5 2.7" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <!-- battery -->
+      <div class="battery">
+        <div class="battery-body">
+          <div class="battery-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Nav -->
+  <div class="top-nav">
+    <div class="nav-btn">
+      <div class="nav-icon">
+        <!-- Library: bookmark icon -->
+        <svg viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 011 1v17l-8-4-8 4V4a1 1 0 011-1z"/></svg>
+      </div>
+      <span class="nav-label">Library</span>
+    </div>
+
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="nav-btn">
+      <div class="nav-icon">
+        <!-- Quran: open book icon -->
+        <svg viewBox="0 0 24 24"><path d="M2 6s2-2 6-2 6 4 6 4 2-4 6-4 6 2 6 2v14s-2-1-6-1-6 3-6 3-2-3-6-3-6 1-6 1V6z"/></svg>
+      </div>
+      <span class="nav-label">Quran</span>
+    </div>
+  </div>
+
+  <!-- Prompt -->
+  <div class="prompt">
+    <div class="prompt-arabic">اِستَمِع وَاعرِف</div>
+    <div class="prompt-main">Tap to Identify Ayah</div>
+  </div>
+
+  <!-- Mic Button -->
+  <div class="mic-wrap">
+    <div class="mic-pulse-ring"></div>
+    <div class="mic-pulse-ring"></div>
+    <div class="mic-btn" id="micBtn">
+      <div class="mic-logo">
+        <span class="mic-logo-arabic">آية</span>
+        <span class="mic-logo-latin">Ayah</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Waveform -->
+  <div class="waveform">
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+  </div>
+
+  <!-- Status label -->
+  <div class="status-label">
+    <span>Listening for Quranic recitation...</span>
+  </div>
+
+  <!-- Search Button -->
+  <div class="search-wrap">
+    <div class="search-btn">
+      <svg viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Last Result Card -->
+  <div class="last-result">
+    <div class="last-result-left">
+      <div class="result-dot">
+        <span>٢٣</span>
+      </div>
+      <div class="result-info">
+        <div class="result-surah">Al-Mu'minun • Ayah 84</div>
+        <div class="result-ayat">قُل لِّمَنِ ٱلۡأَرۡضُ وَمَن فِيهَآ</div>
+      </div>
+    </div>
+    <div class="result-open">
+      PDF
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </div>
+
+  <!-- Home Bar -->
+  <div class="home-bar"></div>
+</div>
+
+<script>
+  // Mic button tap interaction
+  const micBtn = document.getElementById('micBtn');
+  const waveform = document.querySelector('.waveform');
+  const statusLabel = document.querySelector('.status-label span');
+  const states = ['Tap to Identify Ayah', 'Listening...', 'Identifying...'];
+  let stateIdx = 0;
+
+  micBtn.addEventListener('click', () => {
+    stateIdx = (stateIdx + 1) % states.length;
+    statusLabel.textContent = stateIdx === 0
+      ? 'Listening for Quranic recitation...'
+      : stateIdx === 1 ? 'Listening...' : 'Identifying...';
+
+    // Boost wave bars when listening
+    document.querySelectorAll('.wave-bar').forEach(bar => {
+      bar.style.opacity = stateIdx === 1 ? '1' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
